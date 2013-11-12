@@ -1,8 +1,8 @@
+// Registring models
+//var Appliance = require('mongoose').model('Appliance');
 
-/*
- * GET home page.
- */
 
+// Home page
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };

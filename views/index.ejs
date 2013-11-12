@@ -2,10 +2,14 @@
 <html ng-app>
   <head>
     <title><%= title %></title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-resource.min.js"></script>
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css">
     <script src="/javascripts/ui-bootstrap-tpls-0.6.0.js"></script>
+    
+    <script src="appli.js"></script>
+      
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -39,7 +43,26 @@
       <div class="container">
 	<h1><%= title %></h1>
 	<p>Welcome to <%= title %></p>
-	</div> <!-- container -->
-      </div> <!-- jumbotron -->
+      </div> <!-- container -->
+    </div> <!-- jumbotron -->
+    <div class="row" ng-controller="ApplianceCtrl">
+      <div class="col-sm-6">
+	<div class="input-group">
+	  <input type="text" ng-model="form.type" name="type" class="form-control">
+	  <input type="text" name="power" ng-model="form.power" class="form-control">
+	  <span class="input-group-btn">
+	    <button ng-click="addAppliance()" class="btn btn-default" type="button">Save</button>
+	  </span>
+	</div> <!-- input-group -->
+      </div> <!-- col-xx-x -->
+      <div class="col-sm-6">
+	<ul>
+	  <li ng-repeat="appliance in appliances">
+	    <p>{{ appliance.type }}</p>
+	    <p>{{ appliance.power }}</p>
+	  </li>
+	</ul>
+      </div> <!-- col-xx-x -->
+    </div> <!-- row -->
   </body>
 </html>

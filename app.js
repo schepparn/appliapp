@@ -30,7 +30,10 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/appliances', appliances.index);
-app.post('/appliances', appliances.addAppliance);
+app.get('/appliances/:id', appliances.findById);
+app.post('/appliances', appliances.add);
+app.put('/appliances/:id', appliances.update);
+app.delete('/appliances/:id', appliances.delete);
 
 
 http.createServer(app).listen(app.get('port'), function(){

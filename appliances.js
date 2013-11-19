@@ -4,13 +4,13 @@ var Schema = mongoose.Schema;
 
 var ApplianceSchema = new Schema({
     type  : { type: String, required: true },
-    power : { type: Number, requied: true },
+    power : { type: Number, required: true },
 });
 
 var ApplianceModel = mongoose.model('Appliance', ApplianceSchema);
 
-// appliapp index Collection
-exports.index = function(req, res) {
+// appliapp list
+exports.list = function(req, res) {
     return ApplianceModel.find(function (err, appliances) {
 	if (!err) {
 	    res.jsonp(appliances);
@@ -20,8 +20,8 @@ exports.index = function(req, res) {
     });
 }
 
-// appliapp findById
-exports.findById = function (req, res) {
+// appliapp retrieve
+exports.retrieve = function (req, res) {
     return ApplianceModel.findById(req.params.id, function (err, appliance) {
 	if (!err) {
 	    res.jsonp(appliance);
@@ -31,8 +31,8 @@ exports.findById = function (req, res) {
     });
 }
 
-// appliapp add
-exports.add = function(req, res) {
+// appliapp create
+exports.create = function(req, res) {
     var appliance = new ApplianceModel({
 	type: req.body.type,
 	power: req.body.power,
@@ -48,8 +48,8 @@ exports.add = function(req, res) {
     return res.send(appliance);
 }
 
-// appliapp update
-exports.update = function (req, res) {
+// appliapp replace
+exports.replace = function (req, res) {
     return ApplianceModel.findById(req.params.id, function (err, appliance) {
 	appliance.type = req.body.type;
 	appliance.power = req.body.power;

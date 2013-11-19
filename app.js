@@ -6,8 +6,7 @@ var user = require('./routes/user');
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
-
-var appliances = require('./appliances');
+//var cacheFactory = require('cacheFactory');
 
 var app = express();
 
@@ -28,11 +27,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
+var appliances = require('./appliances');
 app.get('/', routes.index);
-app.get('/appliances', appliances.index);
-app.get('/appliances/:id', appliances.findById);
-app.post('/appliances', appliances.add);
-app.put('/appliances/:id', appliances.update);
+app.get('/appliances', appliances.list);
+app.get('/appliances/:id', appliances.retrieve);
+app.post('/appliances', appliances.create);
+app.put('/appliances/:id', appliances.replace);
 app.delete('/appliances/:id', appliances.delete);
 
 

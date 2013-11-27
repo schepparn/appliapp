@@ -1,0 +1,14 @@
+var applicatApp = angular.module('applicatApp', []);
+
+// Populate appliances list
+applicatApp.controller('ApplianceListCtrl', function ($scope) {
+    $http({method: 'http://localhost:3000/appliances/', url: 'GET', cache: true}).
+	success(function(data) {
+	    $scope.appliances = data;
+	}).
+	error(function(data) {
+	    $scope.appliances = data || "Request failed";
+	});
+});
+
+// Add appliance

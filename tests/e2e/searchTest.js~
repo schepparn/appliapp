@@ -1,0 +1,11 @@
+// searchTest.js
+describe('applicat homepage', function() {
+    it('should filter the appliance list as user types into the search box', function() {
+	browser.get('localhost:3000/index');
+
+	expect(repeater('.appliances li').cout()).toBe(2);
+
+	input('query').enter('toast');
+	expect(repeater('.appliances li').count()).toBe(1);
+    });
+});

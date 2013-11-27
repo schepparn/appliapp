@@ -27,7 +27,6 @@ if ('development' == app.get('env')) {
 }
 
 // Routing
-//var index = require('./index');
 app.get('/', function(req, res) {
     res.render('index', { title : 'AppliApp' });
 });

@@ -30,8 +30,7 @@ if ('development' == app.get('env')) {
 //var index = require('./index');
 app.get('/', function(req, res) {
     res.render('index', { title : 'AppliApp' });
-});//, index.index);
-//app.get('/index', index.index);
+});
 var appliances = require('./public/js/appliances');
 app.get('/appliances', appliances.list);
 app.get('/appliances/:id', appliances.retrieve);

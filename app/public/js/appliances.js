@@ -3,13 +3,16 @@ mongoose.connect('mongodb://localhost/appliapp');
 var Schema = mongoose.Schema;
 
 var ApplianceSchema = new Schema({
-    id       : { type: String, required: true },
-    type     : { type: String, required: true },
-    power    : { type: Number, required: true },
-    imageUrl : { type: String, required: false },
+    id        : { type: String, required: true },
+    type      : { type: String, required: true },
+    power     : { type: Number, required: true },
+    imageUrls : { type: String, required: false },
 });
 
 var ApplianceModel = mongoose.model('Appliance', ApplianceSchema);
+
+// Inspired by http://tamas.io/contact-manager-written-in-angularjs-express-and-mongodb-episode-1/
+// Great curl statements to try from terminal window
 
 // appliapp list
 exports.list = function(req, res) {
@@ -24,8 +27,9 @@ exports.list = function(req, res) {
 
 // appliapp retrieve
 exports.retrieve = function (req, res) {
-    return ApplianceModel.findById(req.params.id, function (err, appliance) {
+    return ApplianceModel.find({id: req.params.id}, function (err, appliance) {
 	if (!err) {
+	    console.log(appliance);
 	    res.jsonp(appliance);
 	} else {
 	    console.log(err);

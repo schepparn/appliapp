@@ -24,7 +24,14 @@ appliAppControllers.controller('ApplianceCtrl', ['$scope', '$http', function ($s
     };
 }]);
 
-appliAppControllers.controller('ApplianceDetailCtrl', ['$scope', '$routeParams', function (
-    $scope, $routeParams) {
-    $scope.applianceId = $routeParams.applianceId;
+appliAppControllers.controller('ApplianceDetailCtrl', ['$scope', '$routeParams', '$http', function (
+    $scope, $routeParams, $http) {
+//    $http.get('/api/appliances/' + $routeParams.applianceId).
+    $http({url: '/api/appliances/' + $routeParams.applianceId, method: 'GET', cache: true}).
+	success(function(data) {
+	    $scope.appliance = data[0];
+	}). 
+	error(function(data) {
+	    $scope.appliance = data[0] || "Detailed request failure";
+	});
 }]);

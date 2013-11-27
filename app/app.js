@@ -1,8 +1,6 @@
 
 // Module dependencies.
 var express = require('express');
-//var routes = require('./routes');
-//var user = require('./routes/user');
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
@@ -27,7 +25,6 @@ if ('development' == app.get('env')) {
 }
 
 // Routing
-//var index = require('./index');
 app.get('/', function(req, res) {
     res.render('index', { title : 'AppliApp' });
 });

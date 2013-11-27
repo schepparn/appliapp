@@ -1,8 +1,8 @@
-var applicatApp = angular.module('applicatApp', []);
+var appliApp = angular.module('applicatApp', []);
 
 // Populate appliances list 
 // Add new appliance
-applicatApp.controller('ApplianceCtrl', ['$scope', '$http', function ($scope, $http) {
+appliApp.controller('ApplianceCtrl', ['$scope', '$http', function ($scope, $http) {
     // http call to the db to get the appliances data
     $http({url: 'http://localhost:3000/appliances/', method: 'GET', cache: true}).
 	success(function(data) {
@@ -26,9 +26,3 @@ applicatApp.controller('ApplianceCtrl', ['$scope', '$http', function ($scope, $h
 	    });
     };
 }]);
-
-// Add appliance to DB and appliances list
-applicatApp.controller('ApplianceAddCtrl', ['$scope', '$http', function ($scope, $http) {
-    
-}]);
-

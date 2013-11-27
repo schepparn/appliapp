@@ -19,9 +19,6 @@ appliApp.controller('ApplianceCtrl', ['$scope', '$http', function ($scope, $http
 	$http.post('/appliances', $scope.form).
 	    success(function(data) {
 		$scope.appliances.push(data);
-		// all these three push methods work!
-		//$scope.appliances.push({ id : data.id, type : data.type, power : data.power, imageUrl : data.imageUrl });
-		//$scope.appliances.push( $scope.form );
 		$scope.form = '';
 	    });
     };

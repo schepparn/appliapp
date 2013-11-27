@@ -6,7 +6,6 @@ var user = require('./routes/user');
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
-//var cacheFactory = require('cacheFactory');
 
 var app = express();
 
@@ -30,6 +29,7 @@ if ('development' == app.get('env')) {
 
 var appliances = require('./appliances');
 app.get('/', routes.index);
+app.get('/index', routes.index);
 app.get('/appliances', appliances.list);
 app.get('/appliances/:id', appliances.retrieve);
 app.post('/appliances', appliances.create);

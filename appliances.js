@@ -3,8 +3,10 @@ mongoose.connect('mongodb://localhost/appliapp');
 var Schema = mongoose.Schema;
 
 var ApplianceSchema = new Schema({
-    type  : { type: String, required: true },
-    power : { type: Number, required: true },
+    id       : { type: String, required: true },
+    type     : { type: String, required: true },
+    power    : { type: Number, required: true },
+    imageUrl : { type: String, required: false },
 });
 
 var ApplianceModel = mongoose.model('Appliance', ApplianceSchema);
@@ -34,12 +36,14 @@ exports.retrieve = function (req, res) {
 // appliapp create
 exports.create = function(req, res) {
     var appliance = new ApplianceModel({
+	id: req.body.id,
 	type: req.body.type,
 	power: req.body.power,
+	imageUrl: req.body.imageUrl,
     });
     appliance.save(function (err) {
 	if (!err) {
-	    console.log("created");
+	    console.log("created" + appliance);
 	} else {
 	    console.log(err);
 	}

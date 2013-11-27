@@ -1,9 +1,9 @@
-function ApplianceCtrl($scope, $http, $cacheFactory, $log) {
+function AppliCtrl($scope, $http, $cacheFactory, $log) {
     // Default method and url
     $scope.method = 'GET';
     $scope.url = 'http://localhost:3000/appliances/';
 
-    // Get list of appliances
+    // List appliances
     $http({method: $scope.method, url: $scope.url, cache: true}).
 	success(function(data) {
 	    $scope.appliances = data;
@@ -12,7 +12,7 @@ function ApplianceCtrl($scope, $http, $cacheFactory, $log) {
 	    $scope.appliances = data || "Request failed";
 	});
 
-    // Add new appliance
+    // Add appliance
     $scope.addAppliance = function() {
 
         $http.post('/appliances', $scope.form).
@@ -22,4 +22,6 @@ function ApplianceCtrl($scope, $http, $cacheFactory, $log) {
 		$scope.appliances.push({type: data.type, power: data.power});
 	    });
     };
+
+    // U
 }

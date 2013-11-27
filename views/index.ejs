@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="applicatApp">
   <head>
     <title><%= title %></title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css">
     <script src="/javascripts/ui-bootstrap-tpls-0.6.0.js"></script>
-    
-    <script src="/javascripts/appli.js"></script>
+    <script src="/javascripts/controllers.js"></script>
       
   </head>
   <body>
@@ -45,26 +44,42 @@
 	<p>Welcome to <%= title %></p>
       </div> <!-- container -->
     </div> <!-- jumbotron -->
+    <div class="row">
+    </div>
     <div class="row" ng-controller="ApplianceCtrl">
-      <div class="col-sm-6">
+      
+      <div class="col-sm-2">
+	
+	Search: <input ng-model="query">
+	Sort by:
+	<select ng-model="orderProp">
+	  <option value="type">Type</option>
+	  <option value="power">Power</option>
+	</select>
+      
+      </div>
+      <div class="col-sm-8">
+	
+	<ul>
+	  <li class="thumbnail" ng-repeat="appliance in appliances | filter:query | orderBy:orderProp">
+	    <a href="#/appliances/{{appliance.id}}" class="thumb"><img ng-src="{{ appliance.imageUrl}}"></a>
+	    <a href="#/appliance/{{appliance.id}}">{{ appliance.type }}</a>
+	    <p>{{ appliance.power }}</p>
+	  </li>
+	</ul>
+
+      </div>
+
+      <div class="col-sm-4">
 	<div class="input-group">
-	  <input type="text" ng-model="form.type" name="type" class="form-control">
-	  <span class="input-group-btn">
-	    <button ng-click="get()" class="btn btn-default" type="button">Get List</button>
-	  </span>
-	  <input type="text" name="power" ng-model="form.power" class="form-control">
+	  <input type="text" ng-model="form.id" placeholder="Enter the id" name="id" class="form-control">
+	  <input type="text" ng-model="form.type" placeholder="Enter the type" name="type" class="form-control">
+	  <input type="text" name="power" placeholder="Enter the power" ng-model="form.power" class="form-control">
+	  <input type="text" name="imageUrl" placeholder="Enter the image url" ng-model="form.imageUrl" class="form-control">
 	  <span class="input-group-btn">
 	    <button ng-click="addAppliance()" class="btn btn-default" type="button">Save</button>
 	  </span>
 	</div> <!-- input-group -->
-      </div> <!-- col-xx-x -->
-      <div class="col-sm-6">
-	<ul>
-	  <li ng-repeat="appliance in appliances">
-	    <p>{{ appliance.type }}</p>
-	    <p>{{ appliance.power }}</p>
-	  </li>
-	</ul>
       </div> <!-- col-xx-x -->
     </div> <!-- row -->
   </body>

@@ -1,0 +1,14 @@
+// linkTest.js
+describe('appliapp homepage', function() {
+    it('should render appliance specific links', function() {
+	browser.get('http://localhost:3000');
+
+	var filterSearch = element(by.model("query"));
+	filterSearch.sendKeys('bild');
+
+	pictureLink = element(by.css('[class="thumb"]'));
+	pictureLink.click();
+	
+	expect(currentUrl()).toContain('#/appliances/bild');
+    });
+});

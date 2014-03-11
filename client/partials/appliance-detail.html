@@ -1,0 +1,59 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-init="navbarCollapsed" ng-click="navbarCollapsed = !navbarCollapsed">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">appliapp</a>
+    </div> <!-- navbar header -->
+    <!-- Collapsable navbar menu with angular ui bootstrap, without bootstrap.js -->
+    <!-- http://stackoverflow.com/questions/16268606/responsive-dropdown-navbar-with-angular-ui-bootstrap-done-in-the-correct-angula -->
+    <div class="collapse navbar-collapse" ng-class="navbarCollapsed && 'in'">
+      <ul class="nav navbar-nav">
+	<li class="active">
+	  <a href="#">Home</a>
+	</li>
+	<li>
+	  <a href="#about">About</a>
+	</li>
+	<li>
+	  <a href="#contact">Contact</a>
+	</li>
+      </ul>
+    </div> <!-- navbar collapse menu -->
+  </div> <!-- navbar container -->
+</div> <!-- navbar -->
+
+<img ng-src="{{appliance.imageUrl}}" class="appliance">
+
+<h1>{{ appliance.type }}</h1>
+
+<p>{{appliance.power}}</p>
+
+<ul class="appliance-thumbs">
+  <li ng-repeat="image in appliance.imageUrl">
+    <img ng-src="{{image}}">
+  </li>
+</ul>
+
+<ul class="specs">
+  <li>
+    <span>Power</span>
+    <p>{{appliance.power}}</p>
+  </li>
+  <li> 
+    <span>Dimensions</span>
+    <dl>
+      <dt>height</dt>
+      <dd>{{appliance.dimension.height | checkmark}}</dd>
+      <dt>width</dt>
+      <dd>{{appliance.dimension.width}}</dd>
+      <dt>depth</dt>
+      <dd>{{appliance.dimension.depth}}</dd>
+      <dt>volume</dt>
+      <dd>{{appliance.dimension.volume | checkmark}}</dd>
+</ul>
+
+

@@ -1,0 +1,58 @@
+var _ = require('underscore');
+var path = require('path');
+var passport = require('passport');
+var AuthCtrl = require('./auth/controllers');
+var UserCtrl = require('./user/controllers');
+var User = require('./user/model');
+var userRoles = require('../client/js/routingConfig').userRoles;
+var accessLevels = require('../client/js/routingConfig').accessLevels;
+
+var routes = [ 
+    // Partial views
+    {
+	path: '/partials/*',
+	httpMethod: 'GET',
+	middleware: [function (req, res) {
+	    var requestedView = path.join('./', req.url);
+	    res.render(requestedView);
+	}]
+    },
+
+    // OAuth
+
+    // Local Auth
+    {
+	path: '/register',
+	httpMethod: 'POST',
+	middleware: [AuthCtrl.register]
+    },
+
+    // User resource
+    {
+	path: '/users',
+	httpMethod: 'GET',
+	middleware: [ensureAuthorized, UserCtrl.index],
+	accessLevel: accessLevels.admin
+    },
+
+    // All other request are handled by the AngularJS's 
+    // client side routing system
+    {
+	path: '/*',
+	httpMethod: 'GET',
+	middleware: [function(req, res) {
+	    var role = userRoles.public, username = '';
+	    if(req.user) {
+		role = req.user.role;
+		username = req.user.username;
+	    }
+	    res.cookie('user', JSON.stringify({
+		'usernae': username,
+		'role'   : role,
+	    }));
+	    res.render('index');
+	}]
+    }
+];
+
+// ...

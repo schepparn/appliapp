@@ -1,0 +1,60 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-init="navbarCollapsed" ng-click="navbarCollapsed = !navbarCollapsed">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">appliapp</a>
+    </div> <!-- navbar header -->
+    <!-- Collapsable navbar menu with angular ui bootstrap, without bootstrap.js -->
+    <!-- http://stackoverflow.com/questions/16268606/responsive-dropdown-navbar-with-angular-ui-bootstrap-done-in-the-correct-angula -->
+    <div class="collapse navbar-collapse" ng-class="navbarCollapsed && 'in'">
+      <ul class="nav navbar-nav">
+	<li class="active">
+	  <a href="#">Home</a>
+	</li>
+	<li>
+	  <a href="#about">About</a>
+	</li>
+	<li>
+	  <a href="#contact">Contact</a>
+	</li>
+      </ul>
+    </div> <!-- navbar collapse menu -->
+  </div> <!-- navbar container -->
+</div> <!-- navbar -->
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>AppliApp Registration</h1>
+  </div>
+</div> <!-- jumbotron -->
+
+<div class="row" ng-controller="RegisterCtrl">
+
+  <div class="col-sm-8">
+    
+    <ul>
+      <li class="thumbnail" ng-repeat="user in users">
+	<a href="#/user/{{user.username}}">{{ user.username }}</a>
+      </li> 
+    </ul>
+    
+  </div>
+
+
+  <div class="col-sm-4">
+    <div class="input-group">
+      <input type="text" ng-model="form.name.firstName" placeholder="Enter your First Name" name="firstName" class="form-control">
+      <input type="text" ng-model="form.name.familyName" placeholder="Enter your Family Name" name="familyName" class="form-control">
+      <input type="text" name="username" placeholder="Enter your Username" ng-model="form.username" class="form-control">
+      <input type="text" ng-model="form.emails" placeholder="Enter your Email" name="email" class="form-control">
+      <input type="text" name="password" placeholder="Enter your Password" ng-model="form.password" class="form-control">
+      <span class="input-group-btn">
+	<button ng-click="registerUser()" class="btn btn-default" type="button">Save</button>
+      </span>
+    </div> <!-- input-group -->
+  </div> <!-- col-xx-x -->
+</div> <!-- row -->
